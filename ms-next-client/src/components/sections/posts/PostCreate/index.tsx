@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/lib";
 import { useState } from "react";
-import { PostDialog } from "../PostDialog";
+import { PostFormContainer } from "../PostFormContainer";
 
 export function PostCreate() {
   const [showPostDialog, setShowPostDialog] = useState(false);
@@ -15,11 +15,7 @@ export function PostCreate() {
       <Button variant="contained" onClick={toggleShowPostDialog}>
         Create Post
       </Button>
-      <PostDialog
-        open={showPostDialog}
-        onClose={toggleShowPostDialog}
-        onSubmit={() => {}}
-      />
+      <PostFormContainer open={showPostDialog} onClose={toggleShowPostDialog} />
     </>
   );
 }

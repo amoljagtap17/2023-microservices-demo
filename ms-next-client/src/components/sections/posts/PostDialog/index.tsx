@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/lib";
 import { Close as CloseIcon } from "@mui/icons-material";
 import {
@@ -14,10 +15,9 @@ import { PostForm } from "../PostForm";
 interface IPostDialogProps {
   open: boolean;
   onClose: () => void;
-  onSubmit: () => void;
 }
 
-export function PostDialog({ open, onClose, onSubmit }: IPostDialogProps) {
+export function PostDialog({ open, onClose }: IPostDialogProps) {
   return (
     <Dialog
       open={open}
@@ -50,7 +50,7 @@ export function PostDialog({ open, onClose, onSubmit }: IPostDialogProps) {
           <Button variant="outlined" onClick={onClose}>
             Cancel
           </Button>
-          <Button variant="contained" onClick={onSubmit}>
+          <Button variant="contained" type="submit">
             Submit
           </Button>
         </Stack>
