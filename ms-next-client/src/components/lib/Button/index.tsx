@@ -4,7 +4,9 @@ import { styled } from "@mui/material/styles";
 
 const StyledButton = styled(MUIButton)<ButtonProps>(({ theme }) => ({
   maxWidth: "250px",
+  minWidth: "250px",
   borderRadius: 0,
+  display: "block",
 }));
 
 export function Button(props: ButtonProps) {
