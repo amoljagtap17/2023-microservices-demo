@@ -1,5 +1,11 @@
-import { Typography } from "@mui/material";
+import { CircularProgress } from "@/components/lib";
+import { Stack, Typography } from "@mui/material";
 
 export default function Home() {
-  return <Typography>Home Page!</Typography>;
+  return (
+    <Stack spacing={2}>
+      <Typography>Home Page!</Typography>
+      <CircularProgress />
+    </Stack>
+  );
 }
