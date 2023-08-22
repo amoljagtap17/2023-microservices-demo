@@ -15,7 +15,11 @@ export function PostCreate() {
       <Button variant="contained" onClick={toggleShowPostDialog}>
         Create Post
       </Button>
-      <PostDialog open={showPostDialog} onClose={toggleShowPostDialog} />
+      <PostDialog
+        open={showPostDialog}
+        onClose={toggleShowPostDialog}
+        onSubmit={() => {}}
+      />
     </>
   );
 }
