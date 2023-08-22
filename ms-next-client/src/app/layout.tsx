@@ -1,4 +1,6 @@
 import { ThemeRegistry } from "@/components/lib";
+import { Navbar } from "@/components/sections";
+import { Box, Container } from "@mui/material";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -14,7 +16,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ThemeRegistry>{children}</ThemeRegistry>
+        <ThemeRegistry>
+          <Navbar />
+          <Box component="main" minHeight="95vh" paddingTop={2}>
+            <Container maxWidth="lg">{children}</Container>
+          </Box>
+        </ThemeRegistry>
       </body>
     </html>
   );
