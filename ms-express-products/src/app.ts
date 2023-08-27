@@ -1,6 +1,7 @@
 import bodyParser from "body-parser";
 import express from "express";
 import helmet from "helmet";
+import { errorHandler } from "./middlewares/error-handler";
 import { productsController } from "./routes/products/products.controller";
 
 const app = express();
@@ -29,5 +30,7 @@ app.all("*", async (req, res) => {
   console.log("not found");
   res.send({});
 });
+
+app.use(errorHandler);
 
 export { app };

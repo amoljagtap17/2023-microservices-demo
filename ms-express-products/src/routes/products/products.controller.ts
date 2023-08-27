@@ -1,5 +1,6 @@
 import express, { NextFunction, Request, Response } from "express";
-import { validationResult } from "express-validator";
+// import { validationResult } from "express-validator";
+import { validateRequest } from "../../middlewares";
 import { IProductDTO } from "./dtos/products.dto";
 import { ProductsService } from "./products.service";
 import { productsValidators } from "./validators/products.validators";
@@ -24,17 +25,18 @@ productsController
 
     res.json(products);
   })
-  .put((_req: Request, _res: Response, next: NextFunction) => {
+  /* .put((_req: Request, _res: Response, next: NextFunction) => {
     next(new Error("not implemented"));
-  })
+  }) */
   .post(
     productsValidators,
+    validateRequest,
     async (req: Request, res: Response, _next: NextFunction) => {
-      const errors = validationResult(req);
+      /* const errors = validationResult(req);
 
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
-      }
+      } */
 
       const body = req.body as IProductDTO;
 
@@ -42,9 +44,9 @@ productsController
 
       res.json(newProduct);
     }
-  )
-  .delete((_req: Request, _res: Response, next: NextFunction) => {
+  );
+/* .delete((_req: Request, _res: Response, next: NextFunction) => {
     next(new Error("not implemented"));
-  });
+  }); */
 
 export { productsController };
