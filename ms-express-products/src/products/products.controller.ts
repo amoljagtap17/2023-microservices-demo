@@ -1,4 +1,5 @@
 import express, { NextFunction, Request, Response } from "express";
+import { IProductDTO } from "./dtos/products.dto";
 import { ProductsService } from "./products.service";
 
 const productsController = express.Router({ caseSensitive: true });
@@ -21,17 +22,17 @@ productsController
 
     res.json(products);
   })
-  .put((req: Request, res: Response, next: NextFunction) => {
+  .put((_req: Request, _res: Response, next: NextFunction) => {
     next(new Error("not implemented"));
   })
-  .post(async (req: Request, res: Response, next: NextFunction) => {
-    const body = req.body;
+  .post(async (req: Request, res: Response, _next: NextFunction) => {
+    const body = req.body as IProductDTO;
 
     const newProduct = await ProductsService.addProducts(body);
 
     res.json(newProduct);
   })
-  .delete((req: Request, res: Response, next: NextFunction) => {
+  .delete((_req: Request, _res: Response, next: NextFunction) => {
     next(new Error("not implemented"));
   });
 
