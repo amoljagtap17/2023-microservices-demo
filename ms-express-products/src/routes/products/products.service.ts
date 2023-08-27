@@ -1,24 +1,16 @@
 import { IProductDTO } from "./dtos/products.dto";
+import { Product } from "./product.model";
 import { IProduct } from "./products.interface";
 
 export class ProductsService {
-  static products: IProduct[] = [
-    {
-      id: 1,
-      category: "shirts",
-      name: "shirt1",
-      price: 45,
-    },
-  ];
-
   static async getProducts(): Promise<IProduct[]> {
-    return this.products;
+    const products = await Product.find({}).lean().exec();
+
+    return products;
   }
 
   static async addProducts(product: IProductDTO): Promise<IProduct> {
-    const newProduct = { id: this.products.length + 1, ...product };
-
-    this.products.push(newProduct);
+    const newProduct = await Product.create(product);
 
     return newProduct;
   }
