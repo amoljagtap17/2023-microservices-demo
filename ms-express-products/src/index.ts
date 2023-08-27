@@ -4,9 +4,9 @@ import { app } from "./app";
 import { logger } from "./globals/logger";
 import { mongoDBConnect } from "./globals/utils/mongo-connect";
 
-const start = async () => {
-  dotenv.config();
+dotenv.config();
 
+const start = async () => {
   const PORT = 3000;
 
   const server = http.createServer(app);
