@@ -1,6 +1,7 @@
 import bodyParser from "body-parser";
-import express from "express";
+import express, { Request, Response } from "express";
 import helmet from "helmet";
+import { NotFoundError } from "./globals/errors/not-found-error";
 import { errorHandler } from "./middlewares/error-handler";
 import { productsController } from "./routes/products/products.controller";
 
@@ -26,9 +27,8 @@ app.use(bodyParser.json());
 
 app.use("/products", productsController);
 
-app.all("*", async (req, res) => {
-  console.log("not found");
-  res.send({});
+app.all("*", (_req: Request, res: Response) => {
+  throw new NotFoundError();
 });
 
 app.use(errorHandler);

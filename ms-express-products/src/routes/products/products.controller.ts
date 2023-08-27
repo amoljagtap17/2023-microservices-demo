@@ -1,6 +1,6 @@
 import express, { NextFunction, Request, Response } from "express";
 // import { validationResult } from "express-validator";
-import { validateRequest } from "../../middlewares";
+import { validateRequest } from "../../middlewares/validate-request";
 import { IProductDTO } from "./dtos/products.dto";
 import { ProductsService } from "./products.service";
 import { productsValidators } from "./validators/products.validators";
@@ -15,7 +15,7 @@ const productsController = express.Router({ caseSensitive: true });
 // Use router.route() to avoid duplicate route naming and thus typing errors.
 productsController
   .route("/")
-  .all((req, res, next) => {
+  .all((_req: Request, _res: Response, next: NextFunction) => {
     // runs for all HTTP verbs first
     // think of it as route specific middleware!
     next();
