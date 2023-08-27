@@ -1,7 +1,7 @@
 import bodyParser from "body-parser";
 import express from "express";
 import helmet from "helmet";
-import { productsController } from "./products/products.controller";
+import { productsController } from "./routes/products/products.controller";
 
 const app = express();
 

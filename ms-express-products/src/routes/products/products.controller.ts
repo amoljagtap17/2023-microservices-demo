@@ -1,10 +1,12 @@
 import express, { NextFunction, Request, Response } from "express";
+import { validationResult } from "express-validator";
 import { IProductDTO } from "./dtos/products.dto";
 import { ProductsService } from "./products.service";
+import { productsValidators } from "./validators/products.validators";
 
 const productsController = express.Router({ caseSensitive: true });
 
-/* productsController.get("/", async (c) => {
+/* productsController.get("/", async () => {
   res.send([]);
 }); */
 
@@ -25,13 +27,22 @@ productsController
   .put((_req: Request, _res: Response, next: NextFunction) => {
     next(new Error("not implemented"));
   })
-  .post(async (req: Request, res: Response, _next: NextFunction) => {
-    const body = req.body as IProductDTO;
+  .post(
+    productsValidators,
+    async (req: Request, res: Response, _next: NextFunction) => {
+      const errors = validationResult(req);
 
-    const newProduct = await ProductsService.addProducts(body);
+      if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+      }
 
-    res.json(newProduct);
-  })
+      const body = req.body as IProductDTO;
+
+      const newProduct = await ProductsService.addProducts(body);
+
+      res.json(newProduct);
+    }
+  )
   .delete((_req: Request, _res: Response, next: NextFunction) => {
     next(new Error("not implemented"));
   });
