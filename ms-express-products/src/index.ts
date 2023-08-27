@@ -1,18 +1,19 @@
 import http from "http";
 import { app } from "./app";
+import { logger } from "./globals/logger";
 
 const PORT = 3000;
 
 const server = http.createServer(app);
 
 server.listen(PORT, () => {
-  console.log(`Server is running at http://localhost:${PORT}/`);
+  logger.info(`Server is running at http://localhost:${PORT}/`);
 });
 
 process.on("SIGTERM", () => {
-  console.log("SIGTERM signal received: closing HTTP server");
+  logger.info("SIGTERM signal received: closing HTTP server");
 
   server.close(() => {
-    console.log("HTTP server closed");
+    logger.info("HTTP server closed");
   });
 });
